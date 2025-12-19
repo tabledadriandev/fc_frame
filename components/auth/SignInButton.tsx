@@ -19,7 +19,7 @@ export function SignInButton() {
       // Sign in to NextAuth with the profile data
       signIn('credentials', {
         fid: profile.fid?.toString(),
-        username: profile.username?.value,
+        username: (profile.username as any)?.value || (profile.username as string) || '',
         message: '',
         signature: '',
         redirect: false,
@@ -39,7 +39,7 @@ export function SignInButton() {
   }
 
   if (session || isAuthenticated) {
-    const displayName = session?.user?.username || profile?.username?.value || session?.user?.name || 'User';
+    const displayName = session?.user?.username || ((profile?.username as any)?.value || (profile?.username as string)) || session?.user?.name || 'User';
     
     return (
       <div className="flex items-center gap-4">

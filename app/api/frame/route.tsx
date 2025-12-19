@@ -50,6 +50,7 @@ export async function GET(request: NextRequest) {
     if (state === 'results') {
       // Get score from state data or calculate from answers
       let score = 0;
+      const stateData = searchParams.get('stateData');
       if (stateData) {
         try {
           const decoded = JSON.parse(Buffer.from(stateData, 'base64').toString());
