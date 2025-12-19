@@ -8,6 +8,8 @@ import { generateShareImage } from '@/lib/image-generator';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://fc-frame-gamma.vercel.app';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const score = parseInt(searchParams.get('score') || '0');
