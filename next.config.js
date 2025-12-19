@@ -10,9 +10,22 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
   },
-  // Serve manifest.json from public directory
+  // Serve farcaster.json from public directory
   async headers() {
     return [
+      {
+        source: '/farcaster.json',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
       {
         source: '/manifest.json',
         headers: [
