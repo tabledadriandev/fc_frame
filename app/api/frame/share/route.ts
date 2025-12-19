@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getScoreResult, getTopInsight } from '@/lib/quiz-data';
 import { generateShareImage } from '@/lib/image-generator';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://fc-frame-gamma.vercel.app';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;

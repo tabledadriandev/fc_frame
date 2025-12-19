@@ -10,6 +10,20 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
   },
+  // Serve manifest.json from public directory
+  async headers() {
+    return [
+      {
+        source: '/manifest.json',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
