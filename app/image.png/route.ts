@@ -11,7 +11,8 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    const imageBuffer = await generateInitialFrameImage();
+    const imageResponse = await generateInitialFrameImage();
+    const imageBuffer = await imageResponse.arrayBuffer();
     
     return new NextResponse(imageBuffer, {
       headers: {
