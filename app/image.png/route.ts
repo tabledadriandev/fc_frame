@@ -1,10 +1,13 @@
 /**
  * Default image endpoint for frame manifest
  * Returns the initial frame image
+ * Route: /image.png
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { generateInitialFrameImage } from '@/lib/image-generator';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
@@ -13,7 +16,7 @@ export async function GET(request: NextRequest) {
     return new NextResponse(imageBuffer, {
       headers: {
         'Content-Type': 'image/png',
-        'Cache-Control': 'public, max-age=3600',
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
       },
     });
   } catch (error: any) {
