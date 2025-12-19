@@ -1,16 +1,14 @@
 {
-  "frame": {
-    "name": "Table d'Adrian BETA",
+  "miniapp": {
     "version": "1",
-    "iconUrl": "https://ibb.co/bgCPPncL",
+    "name": "Table d'Adrian BETA",
     "homeUrl": "https://fc-frame-gamma.vercel.app",
-    "imageUrl": "https://fc-frame-gamma.vercel.app/image.png",
-    "buttonTitle": "Take Assessment",
+    "iconUrl": "https://ibb.co/bgCPPncL",
     "splashImageUrl": "https://ibb.co/bgCPPncL",
     "splashBackgroundColor": "#6B8E23",
     "webhookUrl": "https://fc-frame-gamma.vercel.app/api/webhook",
-    "subtitle": "Discover your longevity potential in 2 minutes",
-    "description": "Take a science-backed assessment combining diet principles, biohacking protocols, and lifestyle factors to calculate your personalized longevity score. Get actionable recommendations from chef and wellness expert Adrian, plus early access to the $tabledadrian community for top performers.",
+    "subtitle": "Discover longevity potential",
+    "description": "Take a science-backed assessment combining diet principles, biohacking protocols, and lifestyle factors to calculate your personalized longevity score.",
     "primaryCategory": "health-fitness",
     "screenshotUrls": [
       "https://ibb.co/PGftg2ty"
@@ -23,10 +21,15 @@
       "biohacking",
       "desci"
     ],
-    "ogDescription": "Check your Table d'Adrian Longevity Score. Ticker is : tabledadrian ",
+    "tagline": "Calculate your longevity score",
+    "ogTitle": "My Longevity Score Result",
+    "ogDescription": "Check your Table d'Adrian Longevity Score. Ticker is : tabledadrian",
     "ogImageUrl": "https://ibb.co/nqFdCGXj",
-    "castShareUrl": "https://fc-frame-gamma.vercel.app",
-    "tagline": "Calculate your longevity score ",
-    "ogTitle": "My Longevity Score Result"
+    "imageUrl": "https://fc-frame-gamma.vercel.app/image.png",
+    "buttonTitle": "Take Assessment",
+    "requiredChains": [
+      "eip155:8453"
+    ],
+    "canonicalDomain": "fc-frame-gamma.vercel.app"
   }
 }
