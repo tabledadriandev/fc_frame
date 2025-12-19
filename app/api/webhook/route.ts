@@ -4,6 +4,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { saveUserScore } from '@/lib/storage';
+import { calculateScore, getScoreResult } from '@/lib/quiz-data';
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,8 +17,20 @@ export async function POST(request: NextRequest) {
       data: body,
     });
 
-    // Handle different webhook events
-    // You can extend this to track analytics, update databases, etc.
+    // If webhook contains quiz completion data, save the score
+    if (body.type === 'quiz_complete' && body.fid && body.answers) {
+      const score = calculateScore(body.answers);
+      const result = getScoreResult(score);
+      
+      await saveUserScore(
+        body.fid,
+        body.username,
+        score,
+        result.tier,
+        result.badge,
+        body.answers
+      );
+    }
     
     // Return success response
     return NextResponse.json(

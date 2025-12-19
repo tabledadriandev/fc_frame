@@ -11,6 +11,9 @@ A Farcaster Frame v2 mini app that calculates users' longevity scores through an
 - 📱 **Share Functionality**: Generate shareable images and pre-populated cast text
 - 💰 **Buy CTA**: Direct link to purchase $TABLEDADRIAN on Clanker (Base chain)
 - 🌐 **Landing Page**: Browser-friendly buy page when opened outside Farcaster
+- 🔐 **User Authentication**: Farcaster AuthKit integration for user tracking
+- 📈 **Dashboard**: View your score history and statistics
+- 🏅 **Leaderboard**: See top performers
 
 ## Token Information
 
@@ -24,7 +27,8 @@ A Farcaster Frame v2 mini app that calculates users' longevity scores through an
 
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
-- **Image Generation**: Canvas API (node-canvas)
+- **Image Generation**: @vercel/og (Vercel Optimized)
+- **Authentication**: Farcaster AuthKit + NextAuth.js
 - **Styling**: Tailwind CSS
 - **Frame Protocol**: Farcaster Frames v2
 
@@ -38,6 +42,8 @@ npm install
 cp .env.example .env.local
 # Edit .env.local and set:
 # NEXT_PUBLIC_BASE_URL=https://your-domain.com
+# NEXTAUTH_URL=https://your-domain.com
+# NEXTAUTH_SECRET=your_secret_here (generate with: openssl rand -base64 32)
 ```
 
 ## Development
@@ -59,7 +65,10 @@ npm start
 
 1. Push your code to GitHub
 2. Import project in Vercel
-3. Set environment variable `NEXT_PUBLIC_BASE_URL` to your Vercel domain
+3. Set environment variables:
+   - `NEXT_PUBLIC_BASE_URL`: Your Vercel domain
+   - `NEXTAUTH_URL`: Your Vercel domain
+   - `NEXTAUTH_SECRET`: Generate a secret (use Vercel's environment variable generator)
 4. Deploy
 
 ### Cloudflare Pages
@@ -67,10 +76,10 @@ npm start
 1. Connect your GitHub repository
 2. Set build command: `npm run build`
 3. Set output directory: `.next`
-4. Add environment variable `NEXT_PUBLIC_BASE_URL`
+4. Add environment variables
 5. Deploy
 
-**Note**: Cloudflare Pages may require additional configuration for Canvas API. Consider using a Node.js runtime or alternative image generation service.
+**Note**: For image generation, this project uses `@vercel/og` which works best on Vercel. For Cloudflare Pages, you may need to use an alternative.
 
 ## Frame URL
 
@@ -80,6 +89,18 @@ https://your-domain.com/api/frame
 ```
 
 Use this URL when creating a cast with your frame.
+
+## Authentication Setup
+
+This project uses Farcaster AuthKit for authentication. Users can sign in with their Farcaster account to:
+- Track their score history
+- View personalized dashboard
+- See their leaderboard rank
+- Get recommendations based on past scores
+
+### AuthKit Configuration
+
+The AuthKit is configured in `components/auth/AuthProvider.tsx`. Update the `config` object with your domain and RPC URL.
 
 ## Testing
 
@@ -101,7 +122,12 @@ Use the [Farcaster Frame Validator](https://warpcast.com/~/developers/frames) to
    - View results
    - Test share functionality
    - Test buy button (should redirect to Clanker)
-3. Test in browser:
+3. Test authentication:
+   - Visit `/auth/signin`
+   - Sign in with Farcaster
+   - View dashboard at `/dashboard`
+   - Check leaderboard at `/leaderboard`
+4. Test in browser:
    - Open frame URL in regular browser
    - Navigate to `/buy` page
    - Verify links work correctly
@@ -112,18 +138,41 @@ Use the [Farcaster Frame Validator](https://warpcast.com/~/developers/frames) to
 ta_farcaster/
 ├── app/
 │   ├── api/
-│   │   └── frame/
-│   │       ├── route.tsx          # Main frame handler
-│   │       ├── image/route.ts     # Image generation endpoint
-│   │       └── share/route.ts     # Share functionality
+│   │   ├── auth/
+│   │   │   └── [...nextauth]/
+│   │   │       └── route.ts          # NextAuth API route
+│   │   ├── frame/
+│   │   │   ├── route.tsx              # Main frame handler
+│   │   │   ├── image/route.ts        # Image generation endpoint
+│   │   │   └── share/route.ts        # Share functionality
+│   │   ├── user/
+│   │   │   ├── scores/route.ts       # User score history API
+│   │   │   └── rank/route.ts         # User rank API
+│   │   ├── leaderboard/route.ts      # Leaderboard API
+│   │   └── webhook/route.ts          # Webhook endpoint
+│   ├── auth/
+│   │   └── signin/
+│   │       └── page.tsx              # Sign in page
+│   ├── dashboard/
+│   │   └── page.tsx                  # User dashboard
+│   ├── leaderboard/
+│   │   └── page.tsx                  # Leaderboard page
 │   ├── buy/
-│   │   └── page.tsx               # Buy landing page
-│   ├── layout.tsx                 # Root layout
-│   └── globals.css                # Global styles
+│   │   └── page.tsx                  # Buy landing page
+│   ├── layout.tsx                    # Root layout
+│   └── globals.css                   # Global styles
+├── components/
+│   └── auth/
+│       ├── AuthProvider.tsx          # AuthKit provider
+│       └── SignInButton.tsx          # Sign in button
 ├── lib/
-│   ├── types.ts                   # TypeScript types
-│   ├── quiz-data.ts               # Quiz questions and scoring
-│   └── image-generator.ts         # Canvas image generation
+│   ├── auth.ts                       # NextAuth configuration
+│   ├── storage.ts                    # Score storage (in-memory)
+│   ├── types.ts                      # TypeScript types
+│   ├── quiz-data.ts                  # Quiz questions and scoring
+│   └── image-generator.ts            # Image generation
+├── types/
+│   └── next-auth.d.ts                # NextAuth type definitions
 ├── package.json
 ├── tsconfig.json
 ├── tailwind.config.ts
@@ -152,6 +201,15 @@ export function getScoreResult(score: number): ScoreResult {
 }
 ```
 
+### Storage
+
+The current implementation uses in-memory storage. For production, replace `lib/storage.ts` with a database:
+
+- PostgreSQL with Prisma
+- MongoDB
+- Vercel KV (Redis)
+- Supabase
+
 ### Styling
 
 - Colors: Edit `tailwind.config.ts` for Mediterranean color scheme
@@ -177,22 +235,24 @@ The frame supports the following actions:
 - `NEXT_PUBLIC_BASE_URL`: Your deployed domain (required)
   - Example: `https://longevity-frame.vercel.app`
   - Used for generating frame image URLs
+- `NEXTAUTH_URL`: Your deployed domain (required)
+  - Example: `https://longevity-frame.vercel.app`
+- `NEXTAUTH_SECRET`: Random secret for NextAuth (required)
+  - Generate with: `openssl rand -base64 32`
 
 ## Troubleshooting
-
-### Canvas API Issues
-
-If you encounter Canvas API errors:
-
-1. **Vercel**: Should work out of the box
-2. **Cloudflare Pages**: May need Node.js runtime or alternative service
-3. **Local Development**: Ensure `canvas` package is installed correctly
 
 ### Image Generation Errors
 
 - Check that image URLs are accessible
 - Verify `NEXT_PUBLIC_BASE_URL` is set correctly
-- Check server logs for Canvas errors
+- Check server logs for errors
+
+### Authentication Issues
+
+- Verify `NEXTAUTH_URL` and `NEXTAUTH_SECRET` are set
+- Check that AuthKit config matches your domain
+- Ensure RPC URL is correct (Optimism mainnet)
 
 ### Frame Not Loading
 

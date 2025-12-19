@@ -72,13 +72,21 @@ export default function BuyPage() {
           </a>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-200">
+        <div className="mt-8 pt-8 border-t border-gray-200 flex flex-col gap-2">
           <p className="text-center text-gray-600 text-sm">
             <a 
               href="/api/frame" 
               className="text-[#4682B4] hover:underline"
             >
               ← Back to Longevity Score Calculator
+            </a>
+          </p>
+          <p className="text-center text-gray-600 text-sm">
+            <a 
+              href="/dashboard" 
+              className="text-[#4682B4] hover:underline"
+            >
+              View Dashboard
             </a>
           </p>
         </div>

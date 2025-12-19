@@ -4,7 +4,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { QUIZ_QUESTIONS, calculateScore, getScoreResult } from '@/lib/quiz-data';
+import { saveUserScore } from '@/lib/storage';
 import {
   generateInitialFrameImage,
   generateQuestionImage,
@@ -186,6 +189,24 @@ export async function POST(request: NextRequest) {
         // Quiz complete - show results
         const score = calculateScore(answers);
         const result = getScoreResult(score);
+        
+        // Save score if user is authenticated
+        try {
+          const session = await getServerSession(authOptions);
+          if (session?.user?.fid) {
+            await saveUserScore(
+              session.user.fid,
+              session.user.username,
+              score,
+              result.tier,
+              result.badge,
+              answers
+            );
+          }
+        } catch (error) {
+          // Don't fail if saving score fails
+          console.error('Error saving user score:', error);
+        }
         
         // Store answers in state for results screen
         const resultsState = Buffer.from(JSON.stringify({
