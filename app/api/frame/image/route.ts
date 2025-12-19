@@ -7,6 +7,7 @@ import {
   generateInitialFrameImage,
   generateQuestionImage,
   generateResultsImage,
+  generateShareImage,
 } from '@/lib/image-generator';
 
 export async function GET(request: NextRequest) {
