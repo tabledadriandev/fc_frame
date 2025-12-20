@@ -5,11 +5,11 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/18784346-5924-4276-8272-05fff42c5347',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'middleware.ts:8',message:'Middleware called',data:{pathname,url:request.url},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+  fetch('http://127.0.0.1:7242/ingest/18784346-5924-4276-8272-05fff42c5347',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'middleware.ts:8',message:'Middleware called',data:{pathname,url:request.url,fullUrl:request.nextUrl.toString()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
   // #endregion
   
   // Handle .well-known/farcaster.json requests
-  if (pathname === '/.well-known/farcaster.json') {
+  if (pathname === '/.well-known/farcaster.json' || pathname.startsWith('/.well-known/farcaster.json')) {
     // #region agent log
     fetch('http://127.0.0.1:7242/ingest/18784346-5924-4276-8272-05fff42c5347',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'middleware.ts:14',message:'Handling .well-known/farcaster.json request',data:{pathname},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
@@ -67,6 +67,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/.well-known/:path*',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 };
