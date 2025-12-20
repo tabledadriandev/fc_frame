@@ -19,11 +19,11 @@ const nextConfig = {
       },
     ];
   },
-  // Serve .well-known/farcaster.json with correct headers
+  // Headers for API route
   async headers() {
     return [
       {
-        source: '/.well-known/farcaster.json',
+        source: '/api/farcaster-manifest',
         headers: [
           {
             key: 'Content-Type',
