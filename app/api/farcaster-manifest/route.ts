@@ -11,11 +11,11 @@ export async function GET() {
     miniapp: {
       version: "1",
       name: "Table d'Adrian BETA",
-      homeUrl: "https://fc-frame-gamma.vercel.app",
+      homeUrl: "https://tabledadrian.xyz",
       iconUrl: "https://ibb.co/bgCPPncL",
       splashImageUrl: "https://ibb.co/bgCPPncL",
       splashBackgroundColor: "#6B8E23",
-      webhookUrl: "https://fc-frame-gamma.vercel.app/api/webhook",
+      webhookUrl: "https://tabledadrian.xyz/api/webhook",
       subtitle: "Discover longevity potential",
       description: "Take a science-backed assessment combining diet principles, biohacking protocols, and lifestyle factors to calculate your personalized longevity score.",
       primaryCategory: "health-fitness",
@@ -34,12 +34,12 @@ export async function GET() {
       ogTitle: "My Longevity Score Result",
       ogDescription: "Check your Table d'Adrian Longevity Score. Ticker is : tabledadrian",
       ogImageUrl: "https://ibb.co/nqFdCGXj",
-      imageUrl: "https://fc-frame-gamma.vercel.app/image.png",
+      imageUrl: "https://tabledadrian.xyz/image.png",
       buttonTitle: "Take Assessment",
       requiredChains: [
         "eip155:8453"
       ],
-      canonicalDomain: "fc-frame-gamma.vercel.app"
+      canonicalDomain: "tabledadrian.xyz"
     }
   };
 

@@ -14,7 +14,7 @@ import {
   generateResultsImage,
 } from '@/lib/image-generator';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://fc-frame-gamma.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://tabledadrian.xyz';
 const CLANKER_URL = 'https://www.clanker.world/clanker/0xee47670a6ed7501aeeb9733efd0bf7d93ed3cb07';
 const TOKEN_CONTRACT = '0xee47670a6ed7501aeeb9733efd0bf7d93ed3cb07';
 

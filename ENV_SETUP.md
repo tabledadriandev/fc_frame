@@ -17,12 +17,12 @@ Create a `.env.local` file in the root of `ta_farcaster` directory with the foll
 ```env
 # Base URL for your deployed application
 # For local development: http://localhost:3000
-# For production: https://fc-frame-gamma.vercel.app
-NEXT_PUBLIC_BASE_URL=https://fc-frame-gamma.vercel.app
+# For production: https://tabledadrian.xyz
+NEXT_PUBLIC_BASE_URL=https://tabledadrian.xyz
 
 # NextAuth Configuration
 # Must match your deployed domain (same as NEXT_PUBLIC_BASE_URL)
-NEXTAUTH_URL=https://fc-frame-gamma.vercel.app
+NEXTAUTH_URL=https://tabledadrian.xyz
 
 # NextAuth Secret - Generate a random secret
 # Generate with: openssl rand -base64 32
@@ -45,13 +45,13 @@ NEXTAUTH_SECRET=your_local_dev_secret_here
 ### Production (Vercel Environment Variables)
 
 ```env
-NEXT_PUBLIC_BASE_URL=https://fc-frame-gamma.vercel.app
-NEXTAUTH_URL=https://fc-frame-gamma.vercel.app
+NEXT_PUBLIC_BASE_URL=https://tabledadrian.xyz
+NEXTAUTH_URL=https://tabledadrian.xyz
 NEXTAUTH_SECRET=your_production_secret_here
 ```
 
 **Key Differences:**
-- **URLs**: Local uses `http://localhost:3000`, Production uses `https://fc-frame-gamma.vercel.app`
+- **URLs**: Local uses `http://localhost:3000`, Production uses `https://tabledadrian.xyz`
 - **Secrets**: **MUST be different** - Generate separate secrets for security
 - **Protocol**: Local uses `http://`, Production uses `https://`
 
@@ -79,16 +79,16 @@ When deploying to Vercel, add these environment variables in your Vercel project
 1. Go to your project in Vercel Dashboard
 2. Navigate to **Settings → Environment Variables**
 3. Add each variable (use **Production** environment):
-   - `NEXT_PUBLIC_BASE_URL` = `https://fc-frame-gamma.vercel.app`
-   - `NEXTAUTH_URL` = `https://fc-frame-gamma.vercel.app`
+   - `NEXT_PUBLIC_BASE_URL` = `https://tabledadrian.xyz`
+   - `NEXTAUTH_URL` = `https://tabledadrian.xyz`
    - `NEXTAUTH_SECRET` = **(Generate a NEW secret - different from local!)**
 
 ### Quick Reference Table
 
 | Variable | Local (`.env.local`) | Production (Vercel) |
 |----------|---------------------|---------------------|
-| `NEXT_PUBLIC_BASE_URL` | `http://localhost:3000` | `https://fc-frame-gamma.vercel.app` |
-| `NEXTAUTH_URL` | `http://localhost:3000` | `https://fc-frame-gamma.vercel.app` |
+| `NEXT_PUBLIC_BASE_URL` | `http://localhost:3000` | `https://tabledadrian.xyz` |
+| `NEXTAUTH_URL` | `http://localhost:3000` | `https://tabledadrian.xyz` |
 | `NEXTAUTH_SECRET` | Generate one secret | Generate a **different** secret |
 
 ## Important Notes

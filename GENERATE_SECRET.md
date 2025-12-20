@@ -49,8 +49,8 @@ NEXTAUTH_SECRET=your_generated_secret_here
 ## Example .env.local
 
 ```env
-NEXT_PUBLIC_BASE_URL=https://fc-frame-gamma.vercel.app
-NEXTAUTH_URL=https://fc-frame-gamma.vercel.app
+NEXT_PUBLIC_BASE_URL=https://tabledadrian.xyz
+NEXTAUTH_URL=https://tabledadrian.xyz
 NEXTAUTH_SECRET=cg3+slnSgdHQ0nkyQQoCZcKU3GJ2eUQf7oGykS4AvzM=
 ```
 
