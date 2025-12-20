@@ -2,11 +2,15 @@
  * Serve Farcaster manifest file
  */
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/18784346-5924-4276-8272-05fff42c5347',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/api/farcaster-manifest/route.ts:10',message:'API route GET called',data:{url:request.url,method:request.method,headers:Object.fromEntries(request.headers.entries())},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+  // #endregion
+  
   const manifest = {
     miniapp: {
       version: "1",
@@ -43,6 +47,10 @@ export async function GET() {
     }
   };
 
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/18784346-5924-4276-8272-05fff42c5347',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'app/api/farcaster-manifest/route.ts:46',message:'Returning manifest JSON response',data:{manifestKeys:Object.keys(manifest),responseStatus:200},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+  // #endregion
+  
   return NextResponse.json(manifest, {
     headers: {
       'Content-Type': 'application/json',
