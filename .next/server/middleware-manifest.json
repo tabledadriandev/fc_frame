@@ -1,6 +1,32 @@
 {
   "version": 3,
-  "middleware": {},
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge-runtime-webpack.js",
+        "server/middleware.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/\\.well-known\\/farcaster\\.json(.json)?[\\/#\\?]?$",
+          "originalSource": "/.well-known/farcaster.json"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "Nvkvk0KCq1we3Epx51N51",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "1CGFgu/AQwoVl9U3Ue2hS473Y3+GB3VSzzxsXsmdQIo=",
+        "__NEXT_PREVIEW_MODE_ID": "cf874ec1252a9fdec712151e6d23a3b5",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "2cf03119be7410cca54ec654d1020c12ecc85eb1765981cbdbd158ed53460288",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "b3207b1ebdec483d6f7ba5b09f774e30417c565821f5cdd3423adfac7bfcd1d1"
+      }
+    }
+  },
   "functions": {},
-  "sortedMiddleware": []
+  "sortedMiddleware": [
+    "/"
+  ]
 }
