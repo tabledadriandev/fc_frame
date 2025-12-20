@@ -4,5 +4,20 @@
       "source": "/.well-known/farcaster.json",
       "destination": "/api/farcaster-manifest"
     }
+  ],
+  "headers": [
+    {
+      "source": "/api/farcaster-manifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
   ]
 }
