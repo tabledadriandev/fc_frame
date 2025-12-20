@@ -1,1 +1,1 @@
-{"version":1,"functions":{"/image.png":{},"/buy":{}}}
+{"version":1,"functions":{"/api/frame/image":{},"/api/frame/share":{},"/api/user/rank":{},"/.well-known/farcaster.json":{},"/image.png":{},"/api/leaderboard":{},"/buy":{},"/api/user/scores":{},"/api/frame":{}}}
