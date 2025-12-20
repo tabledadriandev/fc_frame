@@ -1,1 +1,1 @@
-{"version":1,"functions":{"/api/leaderboard":{},"/api/frame/share":{},"/api/user/rank":{},"/api/user/scores":{},"/api/frame":{},"/api/frame/image":{},"/image.png":{},"/buy":{},"/.well-known/farcaster.json":{},"/api/farcaster-manifest":{}}}
+{"version":1,"functions":{"/.well-known/farcaster.json":{},"/api/farcaster-manifest":{},"/api/leaderboard":{},"/api/frame/image":{},"/api/user/rank":{},"/api/user/scores":{},"/image.png":{},"/api/frame":{},"/buy":{},"/api/frame/share":{}}}
