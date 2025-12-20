@@ -10,11 +10,11 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
   },
-  // Headers for API route
+  // Headers for static files
   async headers() {
     return [
       {
-        source: '/api/farcaster-manifest',
+        source: '/.well-known/farcaster.json',
         headers: [
           {
             key: 'Content-Type',
