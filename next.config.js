@@ -10,11 +10,11 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
   },
-  // Serve farcaster.json from public directory
+  // Serve .well-known/farcaster.json with correct headers
   async headers() {
     return [
       {
-        source: '/api/farcaster-manifest',
+        source: '/.well-known/farcaster.json',
         headers: [
           {
             key: 'Content-Type',

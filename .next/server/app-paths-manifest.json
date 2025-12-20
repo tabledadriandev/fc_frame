@@ -1,18 +1,18 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/api/webhook/route": "app/api/webhook/route.js",
-  "/leaderboard/page": "app/leaderboard/page.js",
   "/auth/signin/page": "app/auth/signin/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/api/leaderboard/route": "app/api/leaderboard/route.js",
-  "/.well-known/farcaster.json/route": "app/.well-known/farcaster.json/route.js",
+  "/leaderboard/page": "app/leaderboard/page.js",
+  "/api/webhook/route": "app/api/webhook/route.js",
   "/api/farcaster-manifest/route": "app/api/farcaster-manifest/route.js",
-  "/api/user/rank/route": "app/api/user/rank/route.js",
+  "/.well-known/farcaster.json/route": "app/.well-known/farcaster.json/route.js",
   "/api/frame/image/route": "app/api/frame/image/route.js",
   "/api/frame/share/route": "app/api/frame/share/route.js",
   "/api/user/scores/route": "app/api/user/scores/route.js",
-  "/api/frame/route": "app/api/frame/route.js",
+  "/api/leaderboard/route": "app/api/leaderboard/route.js",
+  "/api/user/rank/route": "app/api/user/rank/route.js",
   "/buy/page": "app/buy/page.js",
-  "/image.png/route": "app/image.png/route.js"
+  "/image.png/route": "app/image.png/route.js",
+  "/api/frame/route": "app/api/frame/route.js"
 }
