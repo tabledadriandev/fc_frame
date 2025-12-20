@@ -10,6 +10,15 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
   },
+  // Rewrite .well-known/farcaster.json to API route
+  async rewrites() {
+    return [
+      {
+        source: '/.well-known/farcaster.json',
+        destination: '/api/farcaster-manifest',
+      },
+    ];
+  },
   // Serve .well-known/farcaster.json with correct headers
   async headers() {
     return [
